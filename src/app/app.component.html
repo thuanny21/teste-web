@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top py-3 box-shadow">
+    <a href="index.html" class="navbar-brand">
+        <img src="assets/logo.png" alt="Lua" width="100">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+</nav>
+
+
+
+
+<div class="container">
+    <div class="my-5 text-center">
+        <br>
+        <span class="h6 d-block">SEJA BEM-VINDO AO SISTEMA ON-LINE</span>
+    </div>
+
+    <div *ngIf="(user | async)?.email" class=" row justify-content-center ">
+        <div class="media ">
+            <img *ngIf="(user | async)?.photoURL" class="d-flex mr-3 " width="60 " src="{{(user | async)?.photoURL}}" alt="{{(user | async)?.displayName}}">
+            <img *ngIf="!(user | async)?.photoURL" class="d-flex mr-3 " width="60 " src="http://imagens.ndig.com.br/internet/perfil_sem_foto_facebook.jpg" alt="{{(user | async)?.displayName}}">
+            <div class="media-body ">
+                <h5 class="mt-0 ">{{(user | async)?.displayName}}</h5>
+                <p class="mt-0 ">{{(user | async)?.email}}</p>
+                <button (click)="sair() " class="btn btn-info ">Sair</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <span *ngIf="!(user | async)?.email">
+        <div class="col-lg-5 mx-auto order-first order-lg-1 mb-5 ">
+        <div class="bg-light rounded p-4 box-shadow ">
+            <div class="row justify-content-center ">
+                <button (click)="loginFacebook() " class="btn btn-block btn-outline-primary ">Login com Facebook</button>
+            </div>
+            <br>
+
+            <div class="row justify-content-center ">
+                <button (click)="abreEmailLogin=! abreEmailLogin " class="btn btn-block btn-outline-danger ">Login com E-mail</button>
+            </div>
+            <br>
+
+            <div *ngIf="abreEmailLogin " class="row justify-content-center ">
+                <div class="form-group ">
+                    <input type="email " class="form-control" [(ngModel)]="email" placeholder="E-mail ">
+                </div>
+                <div class="form-group ">
+                    <input type="password " class="form-control" [(ngModel)]="senha" placeholder="Senha ">
+                </div>
+                <button (click)="loginEmail()" class="btn btn-block btn-outline-info ">Entrar</button>
+            </div>
+            <br>
+
+            <div class="row justify-content-center ">
+                <button (click)="abreEmailCadastro=! abreEmailCadastro " class="btn btn-block btn-outline-warning ">Cadastre-se</button>
+            </div>
+            <br>
+            <div *ngIf="abreEmailCadastro " class="row justify-content-center ">
+                <div class="form-group ">
+                    <input type="text" class="form-control" [(ngModel)]="nome" placeholder="Nome">
+                </div>
+                <div class="form-group ">
+                    <input type="email " class="form-control" [(ngModel)]="email" placeholder="E-mail ">
+                </div>
+                <div class="form-group ">
+                    <input type="password " class="form-control" [(ngModel)]="senha" placeholder="Senha ">
+                </div>
+                <div class="form-group ">
+                    <input type="text" class="form-control" [(ngModel)]="urlImagem" placeholder="Url do Perfil">
+                </div>
+                <button (click)="cadastroEmail()" class="btn btn-block btn-outline-info ">Enviar</button>
+            </div>
+        </div>
+    </div>      
+
+
+    </span>
+
+    <span *ngIf="(user | async)?.email">
+        <div class="col-lg-5 mx-auto order-first order-lg-1 mb-5 ">
+        <div class="bg-light rounded p-4 box-shadow ">
+            <div class="row justify-content-center ">
+                <button (click)="vinculaFacebook() " class="btn btn-block btn-outline-primary ">Conectar com Facebook</button>
+            </div>
+            <br>
+
+            <div class="row justify-content-center ">
+                <button (click)="abreEmailLogin2= !abreEmailLogin2" class="btn btn-block btn-outline-danger ">Conectar com E-mail</button>
+            </div>
+            <br>
+
+            <div *ngIf="abreEmailLogin2 " class="row justify-content-center ">
+                <div class="form-group ">
+                    <input type="email " class="form-control" [(ngModel)]="email" placeholder="E-mail ">
+                </div>
+                <div class="form-group ">
+                    <input type="password " class="form-control" [(ngModel)]="senha" placeholder="Senha ">
+                </div>
+                <button (click)="vinculaEmail()" class="btn btn-block btn-outline-info ">Entrar</button>
+            </div>
+            <br>            
+        </div>
+       </div>    
+    </span>
+</div>
